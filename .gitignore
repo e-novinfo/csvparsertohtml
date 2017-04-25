@@ -1,0 +1,8 @@
+/vendor
+/node_modules
+.env
+.php_cs.cache
+composer.lock
+npm-debug.log
+exports/*
+!exports/.gitkeep
