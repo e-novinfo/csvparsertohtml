@@ -1,0 +1,13 @@
+{
+  "name": "csvparsertohtml",
+  "homepage": "http://www.e-novinfo.ch",
+  "authors": [
+    "e-novinfo <webmaster@e-novinfo.ch>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+  },
+  "overrides": {
+  }
+}

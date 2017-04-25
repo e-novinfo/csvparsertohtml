@@ -1,0 +1,34 @@
+{
+  "dependencies": {
+    "main.js": {
+      "files": [
+        "js/main.js"
+      ],
+      "main": true,
+      "exclude": {
+        "bower": ["outlayer"]
+      }
+    },
+    "main.css": {
+      "files": [
+        "scss/custom.scss"
+      ],
+      "main": true
+    },
+    "fonts": {
+       "external": true,
+       "files": [
+         "assets/fonts/**/*"
+       ]
+    },
+     "images": {
+       "external": true,
+       "files": [
+         "assets/images/**/*"
+       ]
+    }
+  },
+  "config": {
+    "devUrl": "http://localhost"
+  }
+}
