@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/e-novinfo/mailchimpapi.svg?branch=master)](https://travis-ci.org/e-novinfo/mailchimpapi)
-[![StyleCI](https://styleci.io/repos/75374089/shield?branch=master)](https://styleci.io/repos/75374089)
-[![codecov](https://codecov.io/gh/e-novinfo/mailchimpapi/branch/master/graph/badge.svg)](https://codecov.io/gh/e-novinfo/mailchimpapi)
+[![Build Status](https://travis-ci.org/e-novinfo/csvparsertohtml.svg?branch=master)](https://travis-ci.org/e-novinfo/csvparsertohtml)
+[![StyleCI](https://styleci.io/repos/89334499/shield?branch=master)](https://styleci.io/repos/89334499)
+[![codecov](https://codecov.io/gh/e-novinfo/csvparsertohtml/branch/master/graph/badge.svg)](https://codecov.io/gh/e-novinfo/csvparsertohtml)
 
 CSV Parser displaying results with HTML.
