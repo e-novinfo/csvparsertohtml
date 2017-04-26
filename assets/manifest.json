@@ -2,7 +2,7 @@
   "dependencies": {
     "main.js": {
       "files": [
-        "js/main.js"
+        "scripts/main.js"
       ],
       "main": true,
       "exclude": {

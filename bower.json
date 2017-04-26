@@ -7,7 +7,51 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "datatables": "DataTables#^1.10.15"
   },
   "overrides": {
+    "jquery": {
+      "main": [
+        "./dist/jquery.min.js"
+      ]
+    },
+    "jquery-ui": {
+      "main": [
+        "./jquery-ui.min.js",
+        "./themes/base/jquery-ui.min.css",
+        "./themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png",
+        "./themes/base/images/ui-bg_flat_75_ffffff_40x100.png",
+        "./themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png",
+        "./themes/base/images/ui-bg_glass_65_ffffff_1x400.png",
+        "./themes/base/images/ui-bg_glass_75_dadada_1x400.png",
+        "./themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png",
+        "./themes/base/images/ui-bg_glass_95_fef1ec_1x400.png",
+        "./themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png",
+        "./themes/base/images/ui-icons_2e83ff_256x240.png",
+        "./themes/base/images/ui-icons_222222_256x240.png",
+        "./themes/base/images/ui-icons_444444_256x240.png",
+        "./themes/base/images/ui-icons_454545_256x240.png",
+        "./themes/base/images/ui-icons_555555_256x240.png",
+        "./themes/base/images/ui-icons_777620_256x240.png",
+        "./themes/base/images/ui-icons_777777_256x240.png",
+        "./themes/base/images/ui-icons_888888_256x240.png",
+        "./themes/base/images/ui-icons_cc0000_256x240.png",
+        "./themes/base/images/ui-icons_cd0a0a_256x240.png",
+        "./themes/base/images/ui-icons_ffffff_256x240.png"
+      ]
+    },
+    "datatables": {
+      "main": [
+        "./media/js/jquery.dataTables.min.js",
+        "./media/css/jquery.dataTables.min.css",
+        "./media/images/sort_asc.png",
+        "./media/images/sort_asc_disabled.png",
+        "./media/images/sort_both.png",
+        "./media/images/sort_desc.png",
+        "./media/images/sort_desc_disabled.png"
+      ]
+    }
   }
 }
