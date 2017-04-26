@@ -1,2 +1,2 @@
 //JS
-$('body').html('<p>App working!</p>');
+//$('body').html('<p>App working!</p>');
