@@ -1,0 +1,15 @@
+<tr>
+    <td>[@id]</td>
+    <td>[@type]</td>
+    <td>[@data_1]</td>
+    <td>[@data_2]</td>
+    <td>[@data_3]</td>
+    <td>[@data_4]</td>
+    <td>[@data_5]</td>
+    <td>[@data_6]</td>
+    <td>[@data_7]</td>
+    <td>[@data_8]</td>
+    <td>[@data_9]</td>
+    <td>[@data_10]</td>
+    <td>[@other_data]</td>
+</tr>
