@@ -21,6 +21,14 @@ class MainController
     /********************************/
     /********** PROPERTIES **********/
     /********************************/
+
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+
+    private $folder;
+    private $fileName;
     
     /*********************************************************************************/
     /*********************************************************************************/
@@ -29,11 +37,74 @@ class MainController
     /********** CONSTRUCT **********/
     /*******************************/
 
-    public function __construct()
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+
+    public function __construct($folder = null, $fileName = null)
     {
+        $this->_setValues($folder, $fileName);
         $this->_displayMainView();
     }
-    
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /*****************************/
+    /********** SETTERS **********/
+    /*****************************/
+
+    /**********/
+    /********** SET VALUES **********/
+    /**********/
+
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+
+    private function _setValues($folder, $fileName)
+    {
+        $this->_setFolder($folder);
+        $this->_setFileName($fileName);
+    }
+
+    /**********/
+    /********** FOLDER **********/
+    /**********/
+
+    /**
+     * @param string $folder
+     */
+
+    private function _setFolder($folder)
+    {
+        if (!empty($folder)) {
+            $this->folder = $folder;
+        } else {
+            $this->folder = __DIR__ . '/../../imports';
+        }
+    }
+
+    /**********/
+    /********** FILENAME **********/
+    /**********/
+
+    /**
+     * @param string $fileName
+     */
+
+    private function _setFileName($fileName)
+    {
+        if (!empty($fileName)) {
+            $this->fileName = $fileName;
+        } else {
+            $this->fileName = 'test_file';
+        }
+        
+    }
+
     /*********************************************************************************/
     /*********************************************************************************/
         
@@ -93,7 +164,7 @@ class MainController
 
     private function _parseData()
     {
-        $parser = new MainParser();
+        $parser = new MainParser($this->folder, $this->fileName);
         $data = $parser->parse();
     }
 }

@@ -30,7 +30,7 @@ class MainControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testControllerInstantiation()
     {
-        $mainController = new MainController();
+        $mainController = new MainController(__DIR__ . '/../Imports', 'test_file');
         $this->assertInstanceOf('\enovinfo\CSVParserToHTML\Controllers\MainController', $mainController);
     }
     

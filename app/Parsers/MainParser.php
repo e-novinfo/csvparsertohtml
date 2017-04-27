@@ -21,7 +21,15 @@ class MainParser implements Parser
     /********** PROPERTIES **********/
     /********************************/
 
+    /**
+     * @param Parser $parser
+     * @param string $folder
+     * @param string $fileName
+     */
+
     private $parser;
+    private $folder;
+    private $fileName;
 
     /*********************************************************************************/
     /*********************************************************************************/
@@ -30,9 +38,14 @@ class MainParser implements Parser
     /********** CONSTRUCT **********/
     /*******************************/
 
-    public function __construct()
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+
+    public function __construct($folder, $fileName)
     {
-        $this->_setValues();
+        $this->_setValues($folder, $fileName);
     }
 
     /*********************************************************************************/
@@ -46,9 +59,46 @@ class MainParser implements Parser
     /********** SET VALUES **********/
     /**********/
 
-    private function _setValues()
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+
+    private function _setValues($folder, $fileName)
     {
+        $this->_setFolder($folder);
+        $this->_setFileName($fileName);
         $this->_setParser();
+    }
+
+    /**********/
+    /********** FOLDER **********/
+    /**********/
+
+    /**
+     * @param string $folder
+     */
+
+    private function _setFolder($folder)
+    {
+        if (!empty($folder)) {
+            $this->folder = $folder;
+        } else {
+            $this->folder = __DIR__ . '/../../imports';
+        }
+    }
+
+    /**********/
+    /********** FILENAME **********/
+    /**********/
+
+    /**
+     * @param string $fileName
+     */
+
+    private function _setFileName($fileName)
+    {
+        $this->fileName = $fileName;
     }
 
     /**********/
@@ -58,7 +108,7 @@ class MainParser implements Parser
     private function _setParser()
     {
 
-        $this->parser = new CSVParser(__DIR__ . '/../../imports', 'test_file');
+        $this->parser = new CSVParser($this->folder, $this->fileName);
     }
     
     /*********************************************************************************/
