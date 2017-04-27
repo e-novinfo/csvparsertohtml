@@ -31,7 +31,7 @@ class CSVParserTest extends \PHPUnit_Framework_TestCase
 
     public function testControllerInstantiation()
     {
-        $parser = new CSVParser(null, 'test_file');
+        $parser = new CSVParser(__DIR__ . '/../Imports', 'test_file');
         $this->assertInstanceOf('\enovinfo\CSVParserToHTML\Parsers\CSVParser', $parser);
     }
 
@@ -44,7 +44,7 @@ class CSVParserTest extends \PHPUnit_Framework_TestCase
 
     public function testData()
     {
-        $parser = new CSVParser(null, 'test_file');
+        $parser = new CSVParser(__DIR__ . '/../Imports', 'test_file');
         $parser->parse();
         $data = $parser->getData();
 
