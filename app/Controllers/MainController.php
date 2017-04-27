@@ -30,7 +30,7 @@ class MainController
 
     public function __construct()
     {
-        $this->displayMainView();
+        $this->_displayMainView();
     }
     
     /*********************************************************************************/
@@ -40,7 +40,7 @@ class MainController
     /********** DISPLAY MAIN VIEW **********/
     /***************************************/
 
-    private function displayMainView()
+    private function _displayMainView()
     {
         $data = array();
 
