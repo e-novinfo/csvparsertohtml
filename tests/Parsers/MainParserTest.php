@@ -49,7 +49,6 @@ class MainParserTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue(is_array($data));
         $this->assertEquals(4, count($data));
-
     }
 
     /*********************************************************************************/

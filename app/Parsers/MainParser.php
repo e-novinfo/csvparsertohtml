@@ -107,7 +107,6 @@ class MainParser implements Parser
 
     private function _setParser()
     {
-
         $this->parser = new CSVParser($this->folder, $this->fileName);
     }
     
