@@ -12,6 +12,7 @@
 
 namespace enovinfo\CSVParserToHTML\Controllers;
 
+use \enovinfo\CSVParserToHTML\Parsers\MainParser as MainParser;
 use \enovinfo\CSVParserToHTML\Helpers\TemplateHelper as TemplateHelper;
 
 class MainController
@@ -20,6 +21,14 @@ class MainController
     /********************************/
     /********** PROPERTIES **********/
     /********************************/
+
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+
+    private $folder;
+    private $fileName;
     
     /*********************************************************************************/
     /*********************************************************************************/
@@ -28,11 +37,73 @@ class MainController
     /********** CONSTRUCT **********/
     /*******************************/
 
-    public function __construct()
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+
+    public function __construct($folder = null, $fileName = null)
     {
-        $this->displayMainView();
+        $this->_setValues($folder, $fileName);
+        $this->_displayMainView();
     }
-    
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /*****************************/
+    /********** SETTERS **********/
+    /*****************************/
+
+    /**********/
+    /********** SET VALUES **********/
+    /**********/
+
+    /**
+     * @param string $folder
+     * @param string $fileName
+     */
+
+    private function _setValues($folder, $fileName)
+    {
+        $this->_setFolder($folder);
+        $this->_setFileName($fileName);
+    }
+
+    /**********/
+    /********** FOLDER **********/
+    /**********/
+
+    /**
+     * @param string $folder
+     */
+
+    private function _setFolder($folder)
+    {
+        if (!empty($folder)) {
+            $this->folder = $folder;
+        } else {
+            $this->folder = __DIR__ . '/../../imports';
+        }
+    }
+
+    /**********/
+    /********** FILENAME **********/
+    /**********/
+
+    /**
+     * @param string $fileName
+     */
+
+    private function _setFileName($fileName)
+    {
+        if (!empty($fileName)) {
+            $this->fileName = $fileName;
+        } else {
+            $this->fileName = 'test_file';
+        }
+    }
+
     /*********************************************************************************/
     /*********************************************************************************/
         
@@ -40,8 +111,10 @@ class MainController
     /********** DISPLAY MAIN VIEW **********/
     /***************************************/
 
-    private function displayMainView()
+    private function _displayMainView()
     {
+        $this->_parseData();
+
         $data = array();
 
         for ($i = 0; $i <= 10; $i++) {
@@ -79,5 +152,18 @@ class MainController
         $layout->set('content', $mainTable->output());
 
         echo $layout->output();
+    }
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+        
+    /********************************/
+    /********** PARSE DATA **********/
+    /********************************/
+
+    private function _parseData()
+    {
+        $parser = new MainParser($this->folder, $this->fileName);
+        $data = $parser->parse();
     }
 }
