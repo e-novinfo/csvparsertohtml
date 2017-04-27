@@ -145,6 +145,8 @@ abstract class AbstractCSVParser
     private function _setFilePath()
     {
         $this->filePath = $this->folder . '/' . $this->fileName . '.' . $this->fileExtension;
+        echo $this->filePath;
+        echo "\n";
     }
 
     /**********/
