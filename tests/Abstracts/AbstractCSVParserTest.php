@@ -34,7 +34,7 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
         $abstractClass = '\enovinfo\CSVParserToHTML\Abtracts\AbstractCSVParser';
 
         $testData = array(
-            'folder' => 'tests/Imports',
+            'folder' => __DIR__ . '/../Imports',
             'file' => 'test_file'
         );
 
@@ -57,7 +57,7 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
         $abstractClass = '\enovinfo\CSVParserToHTML\Abtracts\AbstractCSVParser';
 
         $testData = array(
-            'folder' => 'tests/Imports',
+            'folder' => __DIR__ . '/../Imports',
             'file' => 'test_file'
         );
 
@@ -90,7 +90,7 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
         $abstractClass = '\enovinfo\CSVParserToHTML\Abtracts\AbstractCSVParser';
 
         $testData = array(
-            'folder' => 'tests/Imports',
+            'folder' => __DIR__ . '/../Imports',
             'file' => 'empty_file'
         );
 
@@ -123,7 +123,7 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
         $abstractClass = '\enovinfo\CSVParserToHTML\Abtracts\AbstractCSVParser';
 
         $testData = array(
-            'folder' => 'tests/Imports',
+            'folder' => __DIR__ . '/../Imports',
             'file' => 'non_existing_file'
         );
 

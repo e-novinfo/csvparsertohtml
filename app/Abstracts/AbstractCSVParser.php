@@ -144,9 +144,7 @@ abstract class AbstractCSVParser
 
     private function _setFilePath()
     {
-        $this->filePath = getcwd() . '/' . $this->folder . '/' . $this->fileName . '.' . $this->fileExtension;
-        echo $this->filePath;
-        echo __DIR__ . '/' . $this->folder . '/' . $this->fileName . '.' . $this->fileExtension;
+        $this->filePath = $this->folder . '/' . $this->fileName . '.' . $this->fileExtension;
     }
 
     /**********/

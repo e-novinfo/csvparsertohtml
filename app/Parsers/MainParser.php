@@ -57,7 +57,8 @@ class MainParser implements Parser
 
     private function _setParser()
     {
-        $this->parser = new CSVParser(null, 'test_file');
+
+        $this->parser = new CSVParser(__DIR__ . '/../../imports', 'test_file');
     }
     
     /*********************************************************************************/
