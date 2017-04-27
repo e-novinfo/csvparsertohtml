@@ -31,7 +31,6 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
 
     public function testConcreteInstanciation()
     {
-
         $abstractClass = '\enovinfo\CSVParserToHTML\Abtracts\AbstractCSVParser';
 
         $testData = array(
@@ -55,7 +54,6 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
 
     public function testConcreteMethods()
     {
-
         $abstractClass = '\enovinfo\CSVParserToHTML\Abtracts\AbstractCSVParser';
 
         $testData = array(
@@ -70,7 +68,6 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
 
         $mock = $this->getMockBuilder($abstractClass)
             ->setConstructorArgs(array($testData['folder'], $testData['file']))
-            ->setMethods()
             ->getMockForAbstractClass();
 
         $this->assertNotEmpty($mock->getFile());
@@ -90,7 +87,6 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
 
     public function testEmptyFile()
     {
-
         $abstractClass = '\enovinfo\CSVParserToHTML\Abtracts\AbstractCSVParser';
 
         $testData = array(
@@ -105,7 +101,6 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
 
         $mock = $this->getMockBuilder($abstractClass)
             ->setConstructorArgs(array($testData['folder'], $testData['file']))
-            ->setMethods()
             ->getMockForAbstractClass();
 
         $this->assertNotEmpty($mock->getFile());
@@ -125,7 +120,6 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
 
     public function testNonExistingFile()
     {
-
         $abstractClass = '\enovinfo\CSVParserToHTML\Abtracts\AbstractCSVParser';
 
         $testData = array(
@@ -140,8 +134,9 @@ class AbstractCSVParserTest extends \PHPUnit_Framework_TestCase
 
         $mock = $this->getMockBuilder($abstractClass)
             ->setConstructorArgs(array($testData['folder'], $testData['file']))
-            ->setMethods()
             ->getMockForAbstractClass();
     }
 
+    /*********************************************************************************/
+    /*********************************************************************************/
 }

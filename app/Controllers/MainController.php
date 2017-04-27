@@ -12,6 +12,7 @@
 
 namespace enovinfo\CSVParserToHTML\Controllers;
 
+use \enovinfo\CSVParserToHTML\Parsers\MainParser as MainParser;
 use \enovinfo\CSVParserToHTML\Helpers\TemplateHelper as TemplateHelper;
 
 class MainController
@@ -42,6 +43,8 @@ class MainController
 
     private function _displayMainView()
     {
+        $this->_parseData();
+
         $data = array();
 
         for ($i = 0; $i <= 10; $i++) {
@@ -79,5 +82,18 @@ class MainController
         $layout->set('content', $mainTable->output());
 
         echo $layout->output();
+    }
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+        
+    /********************************/
+    /********** PARSE DATA **********/
+    /********************************/
+
+    private function _parseData()
+    {
+        $parser = new MainParser();
+        $data = $parser->parse();
     }
 }

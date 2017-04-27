@@ -27,12 +27,12 @@ abstract class AbstractCSVParser
      * @var string $fileName
      */
 
-    protected $delimiter = ',';
+    protected $delimiter = ';';
     protected $enclosure = '"';
     protected $fileExtension = 'csv';
     protected $fileName;
     protected $filePath;
-    protected $folder = 'import';
+    protected $folder = 'imports';
     protected $file = false;
     protected $size = 0;
     
@@ -52,7 +52,6 @@ abstract class AbstractCSVParser
     {
         $this->_setValues($folder, $fileName);
         $this->_prepareFile();
-
     }
 
     /*********************************************************************************/
@@ -104,7 +103,7 @@ abstract class AbstractCSVParser
      * @param string $fileName
      */
 
-    private function _setValues($folder, $fileName) 
+    private function _setValues($folder, $fileName)
     {
         $this->_setFolder($folder);
         $this->_setFileName($fileName);
@@ -119,7 +118,7 @@ abstract class AbstractCSVParser
      * @param string $folder
      */
 
-    private function _setFolder($folder) 
+    private function _setFolder($folder)
     {
         if (!empty($folder)) {
             $this->folder = $folder;
@@ -134,7 +133,7 @@ abstract class AbstractCSVParser
      * @param string $fileName
      */
 
-    private function _setFileName($fileName) 
+    private function _setFileName($fileName)
     {
         $this->fileName = $fileName;
     }
@@ -143,7 +142,7 @@ abstract class AbstractCSVParser
     /********** FILE PATH **********/
     /**********/
 
-    private function _setFilePath() 
+    private function _setFilePath()
     {
         $this->filePath = getcwd() . '/' . $this->folder . '/' . $this->fileName . '.' . $this->fileExtension;
     }
@@ -156,7 +155,7 @@ abstract class AbstractCSVParser
      * @param $file
      */
 
-    private function _setFile($file) 
+    private function _setFile($file)
     {
         $this->file = $file;
     }
@@ -169,7 +168,7 @@ abstract class AbstractCSVParser
      * @param $size
      */
 
-    private function _setSize($size) 
+    private function _setSize($size)
     {
         $this->size = $size;
     }
@@ -181,12 +180,10 @@ abstract class AbstractCSVParser
     /********** PREPARE FILE **********/
     /**********************************/
 
-    private function _prepareFile() {
-
+    private function _prepareFile()
+    {
         try {
-
             if ($this->_loadFile()) {
-
                 $file = $this->_openFile();
 
                 if ($file) {
@@ -197,16 +194,12 @@ abstract class AbstractCSVParser
                     if (!empty($size)) {
                         $this->_setSize($size);
                     }
-
                 }
-
             }
-            
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
             exit;
         }
-        
     }
 
     /*********************************************************************************/
@@ -220,16 +213,14 @@ abstract class AbstractCSVParser
      * @return Bool
      */
 
-    private function _loadFile() 
+    private function _loadFile()
     {
-
         if (!file_exists($this->filePath) || !is_file($this->filePath)) {
             throw new \Exception("$this->fileName not found. Make sure you specified the correct path.");
             return false;
         }
 
         return true;
-
     }
 
     /*********************************************************************************/
@@ -243,10 +234,9 @@ abstract class AbstractCSVParser
      * @return Mixed
      */
 
-    private function _openFile() 
+    private function _openFile()
     {
-
-        $file = fopen($this->filePath,"r");
+        $file = fopen($this->filePath, "r");
 
         if (!$file) {
             throw new \Exception("Error opening data file");
@@ -254,7 +244,6 @@ abstract class AbstractCSVParser
         }
 
         return $file;
-
     }
 
     /*********************************************************************************/
@@ -268,9 +257,8 @@ abstract class AbstractCSVParser
      * @return Mixed
      */
 
-    private function _checkSize() 
+    private function _checkSize()
     {
-
         $size = filesize($this->filePath);
             
         if (!$size) {
@@ -279,7 +267,52 @@ abstract class AbstractCSVParser
         }
 
         return $size;
-
     }
 
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /********************************/
+    /********** CLOSE FILE **********/
+    /********************************/
+
+    /**
+     * @return Bool
+     */
+
+    protected function _closeFile()
+    {
+        return fclose($this->file);
+    }
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /***************************************/
+    /********** ITERATE OVER ROWS **********/
+    /***************************************/
+
+    abstract protected function _iterateOverRows();
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /******************************/
+    /********** GET ROWS **********/
+    /******************************/
+
+    abstract protected function _getRows();
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /*******************************/
+    /********** PUSH DATA **********/
+    /*******************************/
+
+    /**
+     * @param array $row
+     */
+
+    abstract protected function _pushData($row);
 }
