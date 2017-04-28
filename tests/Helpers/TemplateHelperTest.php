@@ -30,7 +30,7 @@ class TemplateHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testHelperInstantiation()
     {
-        $templateHelper = new TemplateHelper('foo');
+        $templateHelper = new TemplateHelper(__DIR__ . '/../../views/', 'foo.tpl');
         $this->assertInstanceOf('\enovinfo\CSVParserToHTML\Helpers\TemplateHelper', $templateHelper);
     }
     
@@ -43,7 +43,7 @@ class TemplateHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testHelperOutput()
     {
-        $templateHelper = new TemplateHelper('simple-content.tpl');
+        $templateHelper = new TemplateHelper(__DIR__ . '/../../views/', 'simple-content.tpl');
         $templateHelper->set('content', 'foo');
         $output = $templateHelper->output();
         $this->assertEquals('foo', $output);
@@ -58,12 +58,10 @@ class TemplateHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testHelperFailedOutput()
     {
-        $file = getcwd() . '/views/foo.tpl';
-
-        $templateHelper = new TemplateHelper('foo.tpl');
+        $templateHelper = new TemplateHelper(__DIR__ . '/../../views/', 'foo.tpl');
         $templateHelper->set('content', 'foo');
         $output = $templateHelper->output();
-        $this->assertEquals("Error loading template file (". $file .").<br />", $output);
+        $this->assertEquals("Error loading template file (foo.tpl).<br />", $output);
     }
     
     /*********************************************************************************/
@@ -75,10 +73,10 @@ class TemplateHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testHelperMerge()
     {
-        $templateHelper = new TemplateHelper('simple-content.tpl');
+        $templateHelper = new TemplateHelper(__DIR__ . '/../../views/', 'simple-content.tpl');
         $templateHelper->set('content', 'foo');
 
-        $templateHelper2 = new TemplateHelper('simple-content.tpl');
+        $templateHelper2 = new TemplateHelper(__DIR__ . '/../../views/', 'simple-content.tpl');
         $templateHelper2->set('content', 'foo2');
 
         $templates = array($templateHelper, $templateHelper2);
@@ -90,7 +88,7 @@ class TemplateHelperTest extends \PHPUnit_Framework_TestCase
         $final .= "\n";
 
         $multi = TemplateHelper::merge($templates);
-        $main = new TemplateHelper('simple-content.tpl');
+        $main = new TemplateHelper(__DIR__ . '/../../views/', 'simple-content.tpl');
         $main->set('content', $multi);
         $output = $main->output();
 

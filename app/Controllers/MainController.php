@@ -117,12 +117,12 @@ class MainController
 
         $viewData = $this->_generateView($data);
 
-        $mainTable = new TemplateHelper('main-table.tpl');
+        $mainTable = new TemplateHelper(null, 'main-table.tpl');
         $mainTable->set('thead', $viewData['header']);
         $mainTable->set('tfoot', $viewData['footer']);
         $mainTable->set('tbody', $viewData['content']);
 
-        $layout = new TemplateHelper('layout.tpl');
+        $layout = new TemplateHelper(null, 'layout.tpl');
         $layout->set('content', $mainTable->output());
 
         echo $layout->output();
@@ -193,14 +193,14 @@ class MainController
             $thTemplates = array();
 
             foreach ($headers as $h => $header) {
-                $th = new TemplateHelper('main-table-header.tpl');
+                $th = new TemplateHelper(null, 'main-table-header.tpl');
                 $th->set('data', $header);
                 $thTemplates[] = $th;
             }
 
             $headerTh = TemplateHelper::merge($thTemplates);
 
-            $headerRow = new TemplateHelper('main-table-row.tpl');
+            $headerRow = new TemplateHelper(null, 'main-table-row.tpl');
             $headerRow->set('cells', $headerTh);
 
             return $headerRow->output();
@@ -225,14 +225,14 @@ class MainController
             $tdTemplates = array();
 
             foreach ($headers as $h => $header) {
-                $td = new TemplateHelper('main-table-cell.tpl');
+                $td = new TemplateHelper(null, 'main-table-cell.tpl');
                 $td->set('data', $header);
                 $tdTemplates[] = $td;
             }
 
             $headerTd = TemplateHelper::merge($tdTemplates);
 
-            $footerRow = new TemplateHelper('main-table-row.tpl');
+            $footerRow = new TemplateHelper(null, 'main-table-row.tpl');
             $footerRow->set('cells', $headerTd);
 
             return $footerRow->output();
@@ -260,14 +260,14 @@ class MainController
                 $tdTemplates = array();
 
                 foreach ($data as $i => $item) {
-                    $td = new TemplateHelper('main-table-cell.tpl');
+                    $td = new TemplateHelper(null, 'main-table-cell.tpl');
                     $td->set('data', $item);
                     $tdTemplates[] = $td;
                 }
 
                 $rowTd = TemplateHelper::merge($tdTemplates);
 
-                $tr = new TemplateHelper('main-table-row.tpl');
+                $tr = new TemplateHelper(null, 'main-table-row.tpl');
                 $tr->set('cells', $rowTd);
                 $trTemplates[] = $tr;
             }
