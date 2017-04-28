@@ -1,6 +1,6 @@
 <div class="main-table-wrapper">
 
-    <table id="main-table">
+    <table id="main-table" class="main-table display stripe hover row-border order-column">
 
         <thead>
             <tr>
