@@ -1,7 +1,6 @@
 .main-table {
     width: 100%;
     max-width: 100%;
-    table-layout:fixed;
     overflow: hidden;
     clear: both;
 }
@@ -16,6 +15,7 @@ table {
 
             td, th {
                 padding: 9px 3px;
+                word-break: break-all;
 
                 input[type="text"] {
                     width: 100%;

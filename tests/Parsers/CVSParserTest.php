@@ -49,7 +49,23 @@ class CSVParserTest extends \PHPUnit_Framework_TestCase
         $data = $parser->getData();
 
         $this->assertTrue(is_array($data));
-        $this->assertEquals(4, count($data));
+        $this->assertEquals(3, count($data));
+    }
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /**********************************/
+    /********** TEST HEADERS **********/
+    /**********************************/
+
+    public function testHeaders()
+    {
+        $parser = new CSVParser(__DIR__ . '/../Imports', 'test_file');
+        $parser->parse();
+        $headers = $parser->getHeaders();
+
+        $this->assertTrue(is_array($headers));
     }
 
     /*********************************************************************************/

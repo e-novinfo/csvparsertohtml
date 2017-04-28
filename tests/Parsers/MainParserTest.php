@@ -48,9 +48,24 @@ class MainParserTest extends \PHPUnit_Framework_TestCase
         $data = $parser->parse();
 
         $this->assertTrue(is_array($data));
-        $this->assertEquals(4, count($data));
+        $this->assertEquals(3, count($data));
     }
 
     /*********************************************************************************/
     /*********************************************************************************/
+
+    /**********************************/
+    /********** TEST GETTERS **********/
+    /**********************************/
+
+    public function testGetters()
+    {
+        $parser = new MainParser(__DIR__ . '/../Imports', 'test_file');
+        $parser->parse();
+
+        $this->assertTrue(is_array($parser->getData()));
+        $this->assertEquals(3, count($parser->getData()));
+
+        $this->assertTrue(is_array($parser->getHeaders()));
+    }
 }
