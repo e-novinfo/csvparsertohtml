@@ -117,7 +117,7 @@ class MainController
 
         $data = array();
 
-        for ($i = 0; $i <= 10; $i++) {
+        for ($i = 0; $i <= 20; $i++) {
             $theData = array();
             $theData['id'] = uniqid();
             $theData['type'] = 'foo' . $i % 2;
