@@ -10,6 +10,7 @@
                 pageLength: 15,
                 responsive: true,
                 autoWidth: true,
+                lengthMenu: [5, 10, 15, 25, 50, 75, 100],
                 language: {
                     "sProcessing":     "Traitement en cours...",
                     "sSearch":         "Rechercher&nbsp;:",
@@ -34,14 +35,36 @@
                 }
             });
 
-            $('#main-table tfoot td').each( function () {
-            var title = $(this).text();
-                $(this).html('<input type="text" placeholder="' + title + '" />');
-            } );
+            var searchCols = $('#main-table').attr('data-searchcols');
+
+            if (searchCols !== null && typeof searchCols !== 'undefined') {
+
+                var cols = searchCols.split(',').map(Number);
+                var i = 1;
+
+                $('#main-table tfoot td').each( function () {
+
+                    var theCol = cols.indexOf(i);
+                    if (theCol !== null && typeof theCol !== 'undefined' && theCol !== -1) {
+                        var title = $(this).text();
+                        $(this).html('<input type="text" placeholder="' + title + '" />');
+                    }
+
+                    i++;
+
+                } );
+
+            } else {
+
+                $('#main-table tfoot td').each( function () {
+                    var title = $(this).text();
+                    $(this).html('<input type="text" placeholder="' + title + '" />');
+                } );
+
+            }
 
             mainTable.columns().every( function () {
                 var that = this;
-        
                 $('input', this.footer() ).on('keyup change', function () {
 
                     if (that.search() !== this.value) {
