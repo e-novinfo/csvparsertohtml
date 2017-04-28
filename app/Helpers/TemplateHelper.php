@@ -20,10 +20,12 @@ class TemplateHelper
     /********************************/
 
     /**
+     * @var string $folder where the template to load is
      * @var string $file the filename of the template to load
      * @var array $values array of values for replacing each tag on the template (the key for each value is its corresponding tag)
      */
 
+    protected $folder;
     protected $file;
     protected $values = array();
     
@@ -35,20 +37,70 @@ class TemplateHelper
     /*******************************/
 
     /**
+     * @param string $folder where the template to load is
      * @param string $file the filename of the template to load
      */
 
-    public function __construct($file)
+    public function __construct($folder = null, $file)
     {
-        $this->file = $file;
+        $this->_setValues($folder, $file);
     }
     
     /*********************************************************************************/
     /*********************************************************************************/
         
-    /*************************/
-    /********** SET **********/
-    /*************************/
+    /*****************************/
+    /********** SETTERS **********/
+    /*****************************/
+
+    /**********/
+    /********** SET VALUES **********/
+    /**********/
+
+    /**
+     * @param string $folder where the template to load is
+     * @param string $file the filename of the template to load
+     */
+
+    private function _setValues($folder, $file)
+    {
+        $this->_setFolder($folder);
+        $this->_setFile($file);
+    }
+
+    /**********/
+    /********** FOLDER **********/
+    /**********/
+
+    /**
+     * @param string $folder where the template to load is
+     */
+
+     private function _setFolder($folder)
+     {
+         if (!empty($folder)) {
+             $this->folder = $folder;
+         } else {
+             $this->folder = __DIR__ . '/../../views/';
+         }
+     }
+
+    /**********/
+    /********** FILE **********/
+    /**********/
+
+    /**
+     * @param string $file the filename of the template to load
+     */
+
+    private function _setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**********/
+    /********** DATA **********/
+    /**********/
 
     /**
      * @param string $key the name of the tag to replace
@@ -73,10 +125,10 @@ class TemplateHelper
 
     public function output()
     {
-        $filePath = getcwd() . '/views/' . $this->file;
+        $filePath = __DIR__ . '/../../views/' . $this->file;
 
         if (!file_exists($filePath)) {
-            return "Error loading template file ($filePath).<br />";
+            return "Error loading template file ($this->file).<br />";
         }
 
         $output = file_get_contents($filePath);
