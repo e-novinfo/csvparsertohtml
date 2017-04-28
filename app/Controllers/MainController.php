@@ -100,7 +100,7 @@ class MainController
         if (!empty($fileName)) {
             $this->fileName = $fileName;
         } else {
-            $this->fileName = 'test_file';
+            $this->fileName = 'data';
         }
     }
 
