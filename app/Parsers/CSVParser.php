@@ -23,10 +23,12 @@ class CSVParser extends AbstractCSVParser
     /********************************/
 
     /**
+     * @var array $headers
      * @var array $data
      */
 
-     private $data = array();
+    private $headers = array();
+    private $data = array();
 
     /*********************************************************************************/
     /*********************************************************************************/
@@ -51,6 +53,19 @@ class CSVParser extends AbstractCSVParser
     /*****************************/
     /********** GETTERS **********/
     /*****************************/
+
+    /**********/
+    /********** HEADERS **********/
+    /**********/
+
+    /**
+     * @return array
+     */
+
+    public function getHeaders()
+    {
+        return $this->headers;
+    }
 
     /**********/
     /********** DATA **********/
@@ -108,16 +123,40 @@ class CSVParser extends AbstractCSVParser
     /*********************************************************************************/
     /*********************************************************************************/
 
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /*********************************/
+    /********** SET HEADERS **********/
+    /*********************************/
+
+    /**
+     * @param array $row
+     */
+
+    private function _setHeaders($row)
+    {
+        $this->headers = $row;
+    }
+
     /***************************************/
     /********** ITERATE OVER ROWS **********/
     /***************************************/
 
     protected function _iterateOverRows()
     {
+        $i = 0;
+
         while (($row = $this->_getRows()) !== false) {
             if (!$this->_checkIfRowIsEmpty($row)) {
-                $this->_pushData($row);
+                if ($i === 0) {
+                    $this->_setHeaders($row);
+                } else {
+                    $this->_pushData($row);
+                }
             }
+
+            $i++;
         }
 
         $this->_closeFile();

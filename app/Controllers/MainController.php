@@ -113,40 +113,14 @@ class MainController
 
     private function _displayMainView()
     {
-        $this->_parseData();
+        $data = $this->_parseData();
 
-        $data = array();
-
-        for ($i = 0; $i <= 20; $i++) {
-            $theData = array();
-            $theData['id'] = uniqid();
-            $theData['type'] = 'foo' . $i % 2;
-
-            for ($j = 1; $j < 11; $j++) {
-                $theData['data_'.$j] = uniqid();
-            }
-
-            $theData['other_data'] = uniqid();
-
-            array_push($data, $theData);
-        }
-
-        $rowTemplates = array();
-
-        foreach ($data as $item) {
-            $row = new TemplateHelper('main-table-row.tpl');
-
-            foreach ($item as $key => $value) {
-                $row->set($key, $value);
-            }
-
-            $rowTemplates[] = $row;
-        }
-
-        $rowsContent = TemplateHelper::merge($rowTemplates);
+        $viewData = $this->_generateView($data);
 
         $mainTable = new TemplateHelper('main-table.tpl');
-        $mainTable->set('content', $rowsContent);
+        $mainTable->set('thead', $viewData['header']);
+        $mainTable->set('tfoot', $viewData['footer']);
+        $mainTable->set('tbody', $viewData['content']);
 
         $layout = new TemplateHelper('layout.tpl');
         $layout->set('content', $mainTable->output());
@@ -161,9 +135,146 @@ class MainController
     /********** PARSE DATA **********/
     /********************************/
 
+    /**
+     * @return array
+     */
+
     private function _parseData()
     {
+        $array = array();
+
         $parser = new MainParser($this->folder, $this->fileName);
-        $data = $parser->parse();
+        $parser->parse();
+
+        $array['header'] = $parser->getHeaders();
+        $array['data'] = $parser->getData();
+
+        return $array;
+    }
+    
+    /*********************************************************************************/
+    /*********************************************************************************/
+
+    /***********************************/
+    /********** GENERATE VIEW **********/
+    /***********************************/
+
+    /**
+     * @param array $data data to use
+     * @return array
+     */
+
+    private function _generateView($data)
+    {
+        $array = array();
+
+        $array['header'] = $this->_displayHeader($data['header']);
+        $array['footer'] = $this->_displayFooter($data['header']);
+        $array['content'] = $this->_displayContent($data['data']);
+
+        return $array;
+    }
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+        
+    /************************************/
+    /********** DISPLAY HEADER **********/
+    /************************************/
+
+    /**
+     * @param array $headers data to use
+     * @return object
+     */
+
+    private function _displayHeader($headers)
+    {
+        if (!empty($headers)) {
+            $thTemplates = array();
+
+            foreach ($headers as $h => $header) {
+                $th = new TemplateHelper('main-table-header.tpl');
+                $th->set('data', $header);
+                $thTemplates[] = $th;
+            }
+
+            $headerTh = TemplateHelper::merge($thTemplates);
+
+            $headerRow = new TemplateHelper('main-table-row.tpl');
+            $headerRow->set('cells', $headerTh);
+
+            return $headerRow->output();
+        }
+    }
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+        
+    /************************************/
+    /********** DISPLAY FOOTER **********/
+    /************************************/
+
+    /**
+     * @param array $headers data to use
+     * @return object
+     */
+
+    private function _displayFooter($headers)
+    {
+        if (!empty($headers)) {
+            $tdTemplates = array();
+
+            foreach ($headers as $h => $header) {
+                $td = new TemplateHelper('main-table-cell.tpl');
+                $td->set('data', $header);
+                $tdTemplates[] = $td;
+            }
+
+            $headerTd = TemplateHelper::merge($tdTemplates);
+
+            $footerRow = new TemplateHelper('main-table-row.tpl');
+            $footerRow->set('cells', $headerTd);
+
+            return $footerRow->output();
+        }
+    }
+
+    /*********************************************************************************/
+    /*********************************************************************************/
+        
+    /*************************************/
+    /********** DISPLAY CONTENT **********/
+    /*************************************/
+
+    /**
+     * @param array $content data to use
+     * @return object
+     */
+
+    private function _displayContent($content)
+    {
+        if (!empty($content)) {
+            $trTemplates = array();
+
+            foreach ($content as $d => $data) {
+                $tdTemplates = array();
+
+                foreach ($data as $i => $item) {
+                    $td = new TemplateHelper('main-table-cell.tpl');
+                    $td->set('data', $item);
+                    $tdTemplates[] = $td;
+                }
+
+                $rowTd = TemplateHelper::merge($tdTemplates);
+
+                $tr = new TemplateHelper('main-table-row.tpl');
+                $tr->set('cells', $rowTd);
+                $trTemplates[] = $tr;
+            }
+
+            $row = TemplateHelper::merge($trTemplates);
+
+            return $row;
+        }
     }
 }
