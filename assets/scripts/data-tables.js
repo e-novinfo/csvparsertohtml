@@ -9,7 +9,6 @@
                 paging: true,
                 pageLength: 15,
                 responsive: true,
-                autoWidth: true,
                 lengthMenu: [5, 10, 15, 25, 50, 75, 100],
                 language: {
                     "sProcessing":     "Traitement en cours...",

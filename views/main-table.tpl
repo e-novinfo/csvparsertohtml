@@ -1,6 +1,6 @@
 <div class="main-table-wrapper">
 
-    <table data-searchcols="2,3,5,7" id="main-table" class="main-table display stripe hover row-border order-column">
+    <table data-searchcols="2,3,5,7" id="main-table" class="main-table display stripe hover row-border order-column cell-border">
 
         <thead>
             [@thead]

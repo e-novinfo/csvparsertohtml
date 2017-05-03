@@ -1,6 +1,7 @@
 .main-table {
-    width: 100%;
+    width: 100% !important;
     max-width: 100%;
+    padding-top: 15px;
     overflow: hidden;
     clear: both;
 }
@@ -20,6 +21,44 @@ table {
                 input[type="text"] {
                     width: 100%;
                     box-sizing: border-box;
+                }
+
+            }
+
+        }
+
+        thead {
+
+            tr.with-borders {
+
+                th {
+                    border-left: 1px solid #000000;
+
+                    &:last-of-type {
+                        border-right: 1px solid #000000;
+                    }
+
+                }
+
+                &.border-top {
+
+                    th {
+                        border-top: 1px solid #000000;
+                    }
+
+                }
+
+            }
+
+            tr + tr {
+
+                th {
+                    border-left: 1px solid #000000;
+
+                    &:last-of-type {
+                        border-right: 1px solid #000000;
+                    }
+
                 }
 
             }
