@@ -1,5 +1,5 @@
 .main-table {
-    width: 100%;
+    width: 100% !important;
     max-width: 100%;
     padding-top: 15px;
     overflow: hidden;
@@ -58,7 +58,7 @@ table {
                     &:last-of-type {
                         border-right: 1px solid #000000;
                     }
-                    
+
                 }
 
             }
