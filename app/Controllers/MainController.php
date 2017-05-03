@@ -261,6 +261,11 @@ class MainController
 
                 foreach ($data as $i => $item) {
                     $td = new TemplateHelper(null, 'main-table-cell.tpl');
+
+                    if (filter_var($item, FILTER_VALIDATE_URL)) {
+                        $item = '<a href="' . $item . '" target="_blank">' . $item . '</a>';
+                    }
+
                     $td->set('data', $item);
                     $tdTemplates[] = $td;
                 }
